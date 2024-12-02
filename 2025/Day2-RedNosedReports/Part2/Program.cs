@@ -1,0 +1,72 @@
+﻿List<string> reports = [];
+int safeReports = 0;
+
+string? line;
+while ((line = Console.ReadLine()) != null)
+{
+    reports.Add(line);
+}
+
+foreach (string report in reports)
+{
+    List<int> levels = report
+        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Select(int.Parse)
+        .ToList();
+
+    if (IsSafe(levels) || CanBeMadeSafe(levels))
+    {
+        safeReports++;
+    }
+}
+
+Console.WriteLine(safeReports);
+
+static bool IsSafe(List<int> levels)
+{
+    return IsIncreasing(levels) || IsDecreasing(levels);
+}
+
+static bool CanBeMadeSafe(List<int> levels)
+{
+    for (int i = 0; i < levels.Count; i++)
+    {
+        List<int> modified = new(levels);
+        modified.RemoveAt(i);
+
+        if (IsSafe(modified))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+static bool IsIncreasing(List<int> levels)
+{
+    for (int i = 0; i < levels.Count - 1; i++)
+    {
+        int diff = levels[i + 1] - levels[i];
+        if (diff < 1 || diff > 3)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+static bool IsDecreasing(List<int> levels)
+{
+    for (int i = 0; i < levels.Count - 1; i++)
+    {
+        int diff = levels[i] - levels[i + 1];
+        if (diff < 1 || diff > 3)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
