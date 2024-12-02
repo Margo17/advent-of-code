@@ -1,8 +1,7 @@
 ﻿List<string> reports = [];
 int safeReports = 0;
 
-string? line;
-while ((line = Console.ReadLine()) != null)
+while (Console.ReadLine() is string line)
 {
     reports.Add(line);
 }
