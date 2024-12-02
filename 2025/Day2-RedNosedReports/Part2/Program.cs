@@ -46,8 +46,8 @@ static bool IsIncreasing(List<int> levels)
 {
     for (int i = 0; i < levels.Count - 1; i++)
     {
-        int diff = levels[i + 1] - levels[i];
-        if (diff < 1 || diff > 3)
+        int difference = levels[i + 1] - levels[i];
+        if (difference < 1 || difference > 3)
         {
             return false;
         }
@@ -60,8 +60,8 @@ static bool IsDecreasing(List<int> levels)
 {
     for (int i = 0; i < levels.Count - 1; i++)
     {
-        int diff = levels[i] - levels[i + 1];
-        if (diff < 1 || diff > 3)
+        int difference = levels[i] - levels[i + 1];
+        if (difference < 1 || difference > 3)
         {
             return false;
         }
